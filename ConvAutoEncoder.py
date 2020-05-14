@@ -6,6 +6,7 @@ from keras.models import Model
 from keras.callbacks import TensorBoard
 from PIL import Image
 
+
 class ConvAutoEncoder:
 
     def __init__(self, input_shape, output_dim, filters=None,
@@ -108,7 +109,7 @@ def save_img(imgs, stri):
     num = imgs.shape[0]
 
     for i in range(num):
-        A = imgs[i].copy()*255
+        A = imgs[i].copy() * 255
         A = np.reshape(np.ravel(A), (28, 28))
         new_p = Image.fromarray(A)
         if new_p.mode != 'RGB':
@@ -117,10 +118,9 @@ def save_img(imgs, stri):
 
 
 if __name__ == '__main__':
-
     x_train, x_test = configureDataset()
 
-    #save_img(x_test, 'IN/')
+    # save_img(x_test, 'IN/')
 
     auto = ConvAutoEncoder(x_train[0].shape, x_train[0].shape)
 
@@ -135,4 +135,4 @@ if __name__ == '__main__':
     a = auto.encode(x_test)
     b = auto.decode(a)
 
-    #save_img(b, 'OUT/')
+    # save_img(b, 'OUT/')
